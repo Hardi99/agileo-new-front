@@ -1,0 +1,51 @@
+<header class="lg:max-w-4xl max-w-2xl xl:max-w-5xl px-4 mx-auto container mb-8 py-2 transition-all lg:top-6 lg:mb-12 lg:py-3 flex justify-between items-center gap-4">
+    <h1 class="font-mono text-lg">Agileo</h1>
+  
+    <button
+      (click)="toggleTheme()"
+      class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center whitespace-nowrap text-sm font-medium outline-none transition-all focus-visible:ring disabled:pointer-events-none disabled:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0 cursor-pointer hover:bg hover:text-accent-foreground dark:hover:bg-amber-50/50 h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5 relative py-2"
+      aria-label="Toggle theme"
+    >
+      <!-- Icône soleil (visible si thème clair) -->
+      <svg
+        *ngIf="!isDark()"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-sun-medium transition-all"
+      >
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 3v1"></path>
+        <path d="M12 20v1"></path>
+        <path d="M3 12h1"></path>
+        <path d="M20 12h1"></path>
+        <path d="m18.364 5.636-.707.707"></path>
+        <path d="m6.343 17.657-.707.707"></path>
+        <path d="m5.636 5.636.707.707"></path>
+        <path d="m17.657 17.657.707.707"></path>
+      </svg>
+  
+      <!-- Icône lune (visible si thème sombre) -->
+      <svg
+        *ngIf="isDark()"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-moon transition-all"
+      >
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+      </svg>
+    </button>
+  </header>

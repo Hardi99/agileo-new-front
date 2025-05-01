@@ -1,0 +1,61 @@
+@if (tasks$ | async; as tasks) {
+
+    <nav class="mb-5 mx-auto flex justify-between items-center max-w-2xl">
+        <h1>To-do List</h1>
+        <a [routerLink]="['/create']" class="btn btn-outline btn-accent">Ajouter</a>
+    </nav>
+    
+    <div class="mx-auto overflow-x-auto rounded-box border border-base-content/5 bg-base-100 max-w-2xl">
+        <table class="table">
+        <!-- head -->
+            <thead>
+                <tr>
+                    <th class="text-center">Tâche</th>
+                    <th class="text-center">Statut</th>
+                    <th class="text-center">Date limite</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (todo of tasks; track todo.id) {
+                <tr>
+                    <td>
+                        <div class="flex items-center gap-2">
+                            <span>{{ todo.title }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="h-auto badge" [ngClass]="{
+                            'badge-warning': todo.status === 'à faire',
+                            'badge-info': todo.status === 'en cours',
+                            'badge-success': todo.status === 'réalisée'
+                        }">
+                            {{ todo.status }}
+                        </div>
+                    </td>
+                    <td class="{{ todo.date < today && todo.status !== 'réalisée' ? 'text-red-400' : null }}">{{ todo.date | date:'dd/MM/yyyy' }}</td>
+                    <td>
+                        <div class="flex gap-2">
+                            <a [routerLink]="['/read', todo.id]" class="btn btn-sm btn-outline btn-primary">Voir</a>
+                            <a [routerLink]="['/update', todo.id]" class="btn btn-sm btn-outline btn-default">Modifier</a>
+                            <button *ngIf="todo.id" (click)="deleteTask(todo.id)" class="btn btn-sm btn-outline btn-error">Supprimer</button>
+                        </div>
+                    </td>
+                </tr>
+            } @empty {
+                <tr>
+                    <td colspan="4" class="text-center py-4">
+                    <p>Aucune tâche à faire</p>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    } @else {
+        <div class="container mx-auto p-4 max-w-2xl">
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <p class="text-center text-gray-500">Chargement de la liste...</p>
+            </div>
+        </div>
+}
