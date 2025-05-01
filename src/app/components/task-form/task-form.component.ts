@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Task, TaskStatus } from '@core/models/task.model';
 import { TaskService } from '@core/services/task.service';
 import { RouterModule, Router } from '@angular/router';
@@ -23,14 +23,16 @@ export class TaskFormComponent {
     public addForm = this.fb.group({
         title: ['', [Validators.required, Validators.minLength(3)]],
         description: '',
-        date: ['', Validators.required],
+        date: ['', [Validators.required, this.dateNotInPastValidator]],
         status: ['à faire', Validators.required],
       });
 
-  private formatDateForInput(dateString: string): string {
-    // Utiliser DatePipe pour formater la date au format YYYY-MM-DD
-    return this.datePipe.transform(dateString, 'yyyy-MM-dd') || '';
-  }
+    public dateNotInPastValidator(control: AbstractControl): ValidationErrors | null {
+      const selectedDate = new Date(control.value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+      return selectedDate < today ? { dateInPast: true } : null;
+    }
 
   onSubmit() {
     if (this.addForm.valid) {

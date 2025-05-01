@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Task, TaskStatus } from '@core/models/task.model';
 import { TaskService } from '@core/services/task.service';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
@@ -24,9 +24,16 @@ export class UpdateTaskComponent implements OnInit {
   public updateForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
     description: '',
-    date: ['', Validators.required],
+    date: ['', [Validators.required, this.dateNotInPastValidator]],
     status: ['', Validators.required],
   });
+
+  public dateNotInPastValidator(control: AbstractControl): ValidationErrors | null {
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+    return selectedDate < today ? { dateInPast: true } : null;
+  }
 
   private taskId: string | null = null;
 
