@@ -1,8 +1,8 @@
 import { Component, inject, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Task } from '../../core/models/task.model';
-import { TaskService } from '../../core/services/task.service';
+import { Task } from '@core/models/task.model';
+import { TaskService } from '@core/services/task.service';
 import { Observable, catchError, of, tap, switchMap } from 'rxjs';
 import { RouterModule } from '@angular/router';
 

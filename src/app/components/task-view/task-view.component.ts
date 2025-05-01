@@ -1,7 +1,7 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskService } from '../../core/services/task.service';
-import { Task } from '../../core/models/task.model';
+import { Task } from '@core/models/task.model';
+import { TaskService } from '@core/services/task.service';
 import { RouterModule, Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 

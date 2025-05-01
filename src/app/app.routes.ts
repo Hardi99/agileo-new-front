@@ -1,13 +1,9 @@
 import { Routes } from '@angular/router';
-import { TaskListComponent } from './components/task-list/task-list.component';
-import { TaskFormComponent } from './components/task-form/task-form.component';
-import { UpdateTaskComponent } from './components/update-task/update-task.component';
-import { TaskViewComponent } from './components/task-view/task-view.component';
 
 export const routes: Routes = [
-  { path: '', component: TaskListComponent },
-  { path: 'create', component: TaskFormComponent },
-  { path: 'read/:id', component: TaskViewComponent },
-  { path: 'update/:id', component: UpdateTaskComponent },
+  { path: '', loadComponent: () => import('@components/task-list/task-list.component').then(m => m.TaskListComponent) },
+  { path: 'create', loadComponent: () => import('@components/task-form/task-form.component').then(m => m.TaskFormComponent) },
+  { path: 'read/:id', loadComponent: () => import('@components/task-view/task-view.component').then(m => m.TaskViewComponent) },
+  { path: 'update/:id', loadComponent: () => import('@components/update-task/update-task.component').then(m => m.UpdateTaskComponent) },
   { path: '**', redirectTo: '' },
 ];

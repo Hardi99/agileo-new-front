@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TaskService } from '../../core/services/task.service';
-import { Task, TaskStatus } from '../../core/models/task.model';
+import { Task, TaskStatus } from '@core/models/task.model';
+import { TaskService } from '@core/services/task.service';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({

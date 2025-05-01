@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TaskService } from '../../core/services/task.service';
-import { Task, TaskStatus } from '../../core/models/task.model';
+import { Task, TaskStatus } from '@core/models/task.model';
+import { TaskService } from '@core/services/task.service';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 
@@ -13,7 +13,7 @@ import { CommonModule, DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class UpdateTaskComponent implements OnInit {
-  
+
   private readonly fb = inject(FormBuilder);
   private readonly service = inject(TaskService);
   private readonly route = inject(ActivatedRoute);
