@@ -1,6 +1,6 @@
 # Agileo-front
 
-agileo-front est une application web développée avec Angular, servant d’interface utilisateur pour la gestion de projets et de tâches dans l’écosystème Agileo.
+agileo-front est une application web développée avec Angular, servant d’interface utilisateur pour la gestion de tâches (to-do-list).
 
 ## Fonctionnalités principales
 
