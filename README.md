@@ -1,4 +1,4 @@
-# agileo-front
+# Agileo-front
 
 agileo-front est une application web développée avec Angular, servant d’interface utilisateur pour la gestion de projets et de tâches dans l’écosystème Agileo.
 
@@ -19,8 +19,8 @@ agileo-front est une application web développée avec Angular, servant d’inte
 Clonez le dépôt et installez les dépendances :
 
 ```bash
-git clone https://github.com/votre-organisation/new-agileo-front.git
-cd new-agileo-front
+git clone https://github.com/Hardi99/agileo-new-front.git
+cd agileo-new-front
 npm install
 ```
 
